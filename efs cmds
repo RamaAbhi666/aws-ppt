@@ -10,10 +10,23 @@ sudo mkdir efs
 
 ## Install botocore 
 
-sudo yum -y install wget
-vi get-pip.py (copy the script and save it)
-sudo python3 /tmp/get-pip.py
-sudo pip3 install botocore || sudo /usr/local/bin/pip3 install botocore
+1. vi get-pip.py
+
+if [[ "$(python3 -V 2>&1)" =~ ^(Python 3.6.*) ]]; then
+    sudo wget https://bootstrap.pypa.io/pip/3.6/get-pip.py -O /tmp/get-pip.py
+elif [[ "$(python3 -V 2>&1)" =~ ^(Python 3.5.*) ]]; then
+    sudo wget https://bootstrap.pypa.io/pip/3.5/get-pip.py -O /tmp/get-pip.py
+elif [[ "$(python3 -V 2>&1)" =~ ^(Python 3.4.*) ]]; then
+    sudo wget https://bootstrap.pypa.io/pip/3.4/get-pip.py -O /tmp/get-pip.py
+else
+    sudo wget https://bootstrap.pypa.io/get-pip.py -O /tmp/get-pip.py
+fi
+
+
+2. sudo yum -y install wget
+#vi get-pip.py (copy the script and save it)
+3. sudo python3 /tmp/get-pip.py
+4. sudo pip3 install botocore || sudo /usr/local/bin/pip3 install botocore
 
 (choose as per ur efs)-- sudo mount -t efs -o tls fs-0fd6f3deb344d0925:/ efs (changes based on efs created)
 (choose as per ur efs)-- sudo mount -t nfs4 -o nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2,noresvport fs-0fd6f3deb344d0925.efs.us-east-1.amazonaws.com:/ efs (Changes as per file system)
