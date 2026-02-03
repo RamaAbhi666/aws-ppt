@@ -8,6 +8,13 @@ https://docs.aws.amazon.com/efs/latest/ug/mounting-fs-mount-helper-ec2-linux.htm
 sudo yum install -y amazon-efs-utils
 sudo mkdir efs
 
+## Install botocore
+
+sudo yum -y install wget
+get-pip.py(copy the scrpit and save it)
+sudo python3 /tmp/get-pip.py
+sudo pip3 install botocore || sudo /usr/local/bin/pip3 install botocore
+
 ## Install botocore (In case of botocore error)
 
 
